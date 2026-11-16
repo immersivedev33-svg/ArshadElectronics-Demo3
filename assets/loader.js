@@ -63,7 +63,9 @@ async function loader(){
   //    the browser can't skip painting what's under it: the page gets laid out and drawn now, not when the cover fades.
   //    Its own entrance effects (blur-and-rise reveals) start as it is let go; nobody can see them under the cover and blur
   //    is costly, so they are fast-forwarded. Then the cover goes back to fully solid before anything moves.
-  const settle = () => site.getAnimations({ subtree: true }).forEach(a => { try { if (a.effect && a.effect.getComputedTiming().iterations !== Infinity) a.finish(); } catch (e){} });
+  // only timed animations: scroll-linked ones (e.g. the sections that sink as you scroll past, view() timelines) must be left
+  // alone, or finish() pins them at their end state for good (the homepage hero stayed at 45 % opacity, fixed 16 Nov)
+  const settle = () => site.getAnimations({ subtree: true }).forEach(a => { try { if (a.timeline && a.timeline !== document.timeline) return; if (a.effect && a.effect.getComputedTiming().iterations !== Infinity) a.finish(); } catch (e){} });
   release(); bg.style.opacity = .999; await frames(3); settle(); await idle(400); settle(); await frames(2);
   bg.style.opacity = 1; if (skipped) return;
   // 3. measure the header logo and prepare the mark's layer, all before anything moves
