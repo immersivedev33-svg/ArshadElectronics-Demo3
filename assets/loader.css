@@ -1,0 +1,71 @@
+/* Loader Lab picks in demo3 (16 Nov 2026): LD2 + LD4 first-load loader, W6 slow-shimmer skeletons, W8 PDF button fill, FX7 ink buttons.
+   Plan: brainstorms/2026-11-15-loader-picks-plan.md. The loader markup sits at the top of <body> in every page, so it paints
+   before the scripts load; loader.js (last script on the page) flies the mark into the header and removes it. */
+
+/* ---------- first load: the AE mark draws itself, fills, then flies into the header ---------- */
+.ae-ld{position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;cursor:default;-webkit-tap-highlight-color:transparent}
+.ae-bg{position:absolute;inset:0;background:#F5F1E8}
+/* 16 Nov, smoothness fix: while the scripts load, only a faint still outline shows (.ae-gh). The draw, the fill and the
+   flight all run from loader.js once the page is drawn and the browser is idle, so nothing competes with them for frames.
+   Until then the page waits off-screen and unpainted (html.ae-hold), which also keeps its own loops and reveals asleep. */
+.ae-mk,.ae-gh{width:clamp(84px,10vw,124px);height:auto;overflow:visible;grid-area:1/1}
+.ae-mk{position:relative;transform-origin:0 0}
+.ae-mk path{fill:rgba(87,102,48,0);stroke:#576630;stroke-width:6;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
+.ae-gh path{fill:none;stroke:#576630;stroke-opacity:.16;stroke-width:6;stroke-linejoin:round}
+.ae-hold #stageOut{visibility:hidden;transform:translateY(300vh)}
+
+/* returning visit (same session): no intro, a skeleton of the page shell until the page is drawn */
+.ae-sk{display:none}
+.ae-seen .ae-mk,.ae-seen .ae-gh{display:none}
+.ae-seen .ae-sk{display:grid;position:absolute;inset:0;align-content:start;gap:clamp(28px,6vh,64px)}
+.ae-sk i{display:block;border-radius:8px}
+.ae-skh{display:flex;align-items:center;justify-content:space-between;gap:16px;height:72px;padding:0 max(16px,4vw);border-bottom:1px solid #E3DCCB;background:#FBF8F1}
+.ae-skh .lg{width:150px;height:28px}
+.ae-skh span{display:flex;gap:14px}
+.ae-skh span i{width:72px;height:12px}
+.ae-skb{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(20px,4vw,56px);align-items:center;padding:0 max(16px,4vw);max-width:1240px;width:100%;margin:0 auto}
+.ae-skt{display:grid;gap:14px}
+.ae-skt .k{width:150px;height:11px}
+.ae-skt .h{height:clamp(26px,3.6vw,46px);width:92%}
+.ae-skt .h.s{width:58%}
+.ae-skt .p{height:12px;width:80%;margin-top:6px}
+.ae-skt .p.s{width:62%;margin-top:0}
+.ae-skt .bt{width:160px;height:44px;border-radius:999px;margin-top:10px}
+.ae-skb .ph{aspect-ratio:4/3;border-radius:18px}
+@media (max-width:760px){.ae-skh span{display:none}.ae-skb{grid-template-columns:1fr}.ae-skb .ph{order:-1;aspect-ratio:16/10}}
+
+/* W6: slow shimmer, shared by the shell skeleton and photo slots */
+.ae-sk i,.hp img.ae-wait{background:linear-gradient(100deg,#E6DFCF 30%,#F2EDE3 50%,#E6DFCF 70%) 0 0/300% 100%;animation:aeShim 1.6s linear infinite}
+@keyframes aeShim{from{background-position:100% 0}to{background-position:0 0}}
+
+/* ---------- W8: the "Save as PDF" button fills with the download progress ---------- */
+.ae-pf{position:relative;overflow:hidden;isolation:isolate;color:transparent!important}
+.ae-pf>*{visibility:hidden}
+.ae-pf::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--acc,var(--brand,#576630));opacity:.2;transform-origin:0 50%;transform:scaleX(var(--aep,0));transition:transform .18s linear,opacity .2s}
+.ae-pf::after{content:attr(data-aep);position:absolute;inset:0;display:grid;place-items:center;color:var(--ink,#1F1D17);font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.ae-pf.ae-pok::before{opacity:.32}
+.ae-pf.ae-pbad::before{background:#9B3D2E;opacity:.22}
+.ae-pf.ae-pbad::after{color:#9B3D2E}
+
+/* ---------- FX7: ink fills buttons from the point the pointer comes in ---------- */
+.ae-ib{overflow:hidden;isolation:isolate}
+.ae-ib.ae-rel{position:relative}
+.ae-ink{position:absolute;z-index:-1;border-radius:50%;pointer-events:none;background:var(--aeInk);transform:translate(-50%,-50%) scale(0);transition:transform .3s cubic-bezier(.4,.14,1,1)}
+.ae-ib.ae-on .ae-ink{transform:translate(-50%,-50%) scale(1);transition:transform .36s cubic-bezier(0,0,.3,1)}
+.ae-ib.ae-tap .ae-ink{transition-duration:.22s}
+/* outline buttons: brand ink, light text */
+.hp :is(.btng,.fbtn.ghost,.l2-btn.ghost){--aeInk:var(--brand)}
+.hp :is(.p-btn,.p-sbtn):not(.acc){--aeInk:var(--acc,var(--brand))}
+.hp :is(.btng,.fbtn.ghost,.l2-btn.ghost).ae-on{color:var(--brandInk,#fff)!important;border-color:var(--brand)!important}
+.hp :is(.p-btn,.p-sbtn):not(.acc).ae-on{color:var(--onacc,var(--brandInk,#fff))!important;border-color:var(--acc,var(--brand))!important}
+.hp :is(.btng,.fbtn.ghost,.l2-btn.ghost,.p-btn,.p-sbtn){transition-property:color,border-color,background-color,transform,box-shadow}
+/* filled buttons: a darker shade of their own colour */
+.hp :is(.btnp,.fbtn:not(.ghost),.l2-btn:not(.ghost),.d2-pbtn){--aeInk:color-mix(in srgb,var(--brand) 70%,#000)}
+.hp :is(.p-btn,.p-sbtn).acc{--aeInk:color-mix(in srgb,var(--acc,var(--brand)) 70%,#000)}
+
+@media (prefers-reduced-motion:reduce){
+  .ae-mk path{fill:#576630;stroke:none}
+  .ae-gh{display:none}
+  .ae-sk i,.hp img.ae-wait{animation:none}
+  .ae-ink,.ae-ib.ae-on .ae-ink{transition:none}
+}

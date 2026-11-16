@@ -1,0 +1,208 @@
+/* ArshadElectronics-demo3 (13 Nov 2026): styles for the 13 Nov changes. Uses the site's own tokens, so it follows
+   the colour presets; the default is warm paper. Phone-specific design is left for the mobile pass. */
+
+/* ---------- family accents: PlasmaRight's teal; the cap sealer hub wears the ICS brochure navy (that page only) ---------- */
+.hp{--famP:#1D6A5B;--d3navy:#051447}
+.hp[data-fam="P"]{--fam:#1D6A5B;--d3ac2:#5B3A78}
+.hp[data-page="fluxosealer"]{--fam:var(--d3navy);--famS:var(--d3navy)}
+.hp[data-page="fluxosealer"] .famstrip{background:var(--d3navy)}
+
+/* ---------- hub signature rows (ICS on the cap sealer hub, ACT on the corona hub) ---------- */
+.d3-sig{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:8px;padding-top:18px;border-top:1px solid var(--line);max-width:540px}
+.d3-sig img{height:34px;width:auto;max-width:100%;display:block}
+.d3-sigl{width:1px;height:28px;background:var(--line)}
+.d3-sigt{font:500 15px/1.35 var(--fH);color:var(--mut)}
+
+/* ---------- series cards on the family pages show the whole machine (fixes #1, #2) ---------- */
+.hp .series .scard .im,.hp .srail .scard .im{display:block;position:relative;background:var(--surf2)}
+.hp .series .scard .im img,.hp .srail .scard .im img{position:absolute;inset:14px;width:calc(100% - 28px)!important;height:calc(100% - 28px)!important;max-width:none;max-height:none;object-fit:contain!important;object-position:center;margin:0}
+
+/* ---------- the Brezo photo card's wrapper is named .pin, which also styles the small pin buttons (45% until hovered): keep the photo at full strength ---------- */
+.hp .bz-split .pin{opacity:1;padding:0;color:inherit;font-size:inherit;line-height:inherit}
+
+/* ---------- comparison and finder: landscape boxes (Photo Fit F5) ---------- */
+.hp .cmp img{width:72px;height:44px;object-fit:contain}
+.hp .bz-res .m{grid-template-columns:72px 1fr auto}
+.hp .bz-res .m img{width:72px;height:48px;object-fit:contain}
+
+/* ---------- sealer hub: the three steps (C6), bottle types (C7) ---------- */
+.d3-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:34px;padding:0;list-style:none}
+.d3-step{margin:0;background:var(--surf);border:1px solid var(--line);border-radius:var(--r,16px);padding:18px 18px 16px;display:grid;gap:12px;align-content:start;min-width:0}
+.d3-step svg{width:100%;max-width:190px;height:auto;margin:0 auto;display:block}
+.d3-step figcaption{font:500 14.5px/1.4 var(--fH);color:var(--ink);display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start}
+.d3-step figcaption b{width:24px;height:24px;border-radius:50%;background:var(--fam);color:#fff;display:grid;place-items:center;font:600 12px/1 var(--fM)}
+.d3-step .hd{fill:var(--surf2);stroke:var(--line)}
+.d3-step .dot{fill:color-mix(in srgb,var(--fam) 45%,transparent)}
+.d3-step .num{fill:var(--fam)}
+.d3-step .numt{fill:#fff;font:600 13px/1 var(--fM)}
+.d3-step .bt{fill:var(--fam)}
+.d3-step .cp{fill:none;stroke:#8DB1DC;stroke-width:6;stroke-linejoin:round}
+.d3-step .fl{fill:#B8BCC4}
+.d3-step .fl.hot{fill:#E3A33A}
+.d3-step .fl.done{fill:#C9CDD3}
+.d3-step .fld ellipse{fill:none;stroke:#9B4E8E;stroke-width:1.4;stroke-dasharray:3 3;opacity:.75}
+.d3-bottles{margin-top:28px;display:grid;gap:12px}
+.d3-bottles .eb{color:var(--fam)}
+
+/* ---------- corona hub: results (G1) and the lines it fits (G1b) ---------- */
+.d3-resh{margin-top:6px!important;font-weight:600}
+.d3-ticks{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:8px}
+.d3-ticks li{display:grid;grid-template-columns:16px 1fr;gap:10px;align-items:start}
+.hp .act-glow-tx .d3-ticks li{color:rgba(243,239,230,.86)}
+.d3-ticks li:before{content:'';width:8px;height:8px;margin-top:.55em;border-radius:2px;background:var(--fam)}
+.d3-2col{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:18px}
+.d3-fits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.d3-fitg{background:var(--surf);border:1px solid var(--line);border-radius:var(--r,16px);padding:20px;display:grid;gap:14px;align-content:start;min-width:0}
+.d3-fitg b{font:600 17px/1.25 var(--fH)}
+
+/* ---------- the two new pages (Simco-Ion, PlasmaRight) ---------- */
+.d3p{--d3ac:var(--fam)}
+.d3p .d3-sec{border-top:1px solid var(--line)}
+.d3p .d3-hero{padding-top:clamp(28px,4vw,56px)}
+.d3-herog{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,4vw,56px);align-items:center}
+.d3-herog>*{min-width:0}
+.d3-herog .p-h1{margin:18px 0 16px;text-wrap:balance;font-size:clamp(40px,5vw,66px);line-height:1.04}
+.d3p .p-lede{max-width:58ch}
+.d3p .p-actions{margin-top:22px}
+.d3-kick{display:inline-flex;align-items:center;gap:8px;font:500 11.5px/1.2 var(--fM);letter-spacing:.14em;text-transform:uppercase;color:var(--mut);border:1px solid var(--line);background:var(--surf);border-radius:999px;padding:8px 12px}
+.d3-kick:before{content:'';width:7px;height:7px;border-radius:50%;background:var(--d3ac)}
+.d3-co{margin:0 0 16px!important;font:500 13.5px/1.4 var(--fM);letter-spacing:.04em;color:var(--mut)}
+.d3-heropic{margin:0;border-radius:22px;overflow:hidden;border:1px solid var(--line);background:var(--surf)}
+.d3-white{background:#fff}
+.d3-simco .d3-heropic{padding:22px;display:grid;gap:14px}
+.d3-slogo{width:150px;height:auto}
+.d3-simco .d3-heropic .d3-main{width:100%;aspect-ratio:1/1;max-height:380px;object-fit:contain}
+.d3-sq img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block}
+.d3-two{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(20px,4vw,56px);align-items:start}
+.d3-two>*{min-width:0}
+.d3-sech{display:grid;gap:8px;margin-bottom:26px}
+.d3-two .d3-sech{margin-bottom:0}
+.d3-sech .p-h2{margin:0}
+.d3-eb,.d3-tag{font:500 11.5px/1.2 var(--fM);letter-spacing:.14em;text-transform:uppercase;color:var(--d3ac)}
+.d3-g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.d3-g2>*{min-width:0}
+.d3p .p-card{overflow:hidden}
+.d3-pad{padding:22px;display:grid;gap:10px;align-content:start}
+.d3-prod .d3-pic{border-bottom:1px solid var(--line)}
+.d3-prod .d3-pic img{width:100%;aspect-ratio:16/9;object-fit:contain;padding:14px;display:block}
+.d3-h3{font-size:clamp(24px,2.4vw,30px)!important;margin:0}
+.d3-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.d3-chips span{font:500 13.5px/1 var(--fH);padding:9px 12px;border:1px solid var(--line);border-radius:999px;background:var(--bg)}
+.d3-nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.d3-num{padding:22px 24px;border-left:2px solid var(--d3ac)}
+.d3-num b{display:block;font:600 clamp(36px,4.4vw,54px)/1 var(--fH);letter-spacing:-.03em;font-variant-numeric:tabular-nums;color:var(--ink)}
+.d3-num span{display:block;margin-top:10px;color:var(--mut)}
+.d3-lk{display:flex!important;gap:16px;align-items:center;justify-content:space-between;padding:22px;text-decoration:none;color:inherit}
+.d3-lk>span{display:grid;gap:4px}
+.d3-lk b{font:600 19px/1.25 var(--fH)}
+.d3-lk>span>span{color:var(--mut);font-size:14.5px}
+.d3-lk i{flex-shrink:0;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-style:normal;font-size:18px}
+.d3-links{padding:16px 20px;margin-top:14px;display:grid;gap:12px}
+.d3-links>div{display:grid;gap:3px}
+.d3-links small{font:500 11px/1 var(--fM);letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
+.d3-links a{color:var(--ink);font-weight:500}
+/* PlasmaRight */
+.d3-facts{list-style:none;padding:0;margin:22px 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.d3-facts li{padding:16px;border-radius:16px;background:var(--surf);border:1px solid var(--line);display:grid;gap:6px;min-width:0}
+.d3-facts b{font:600 16px/1.2 var(--fH);color:var(--d3ac)}
+.d3-facts span{font-size:14px;color:var(--mut)}
+.d3-uses{display:grid;gap:18px}
+.d3-use{display:grid!important;grid-template-columns:minmax(0,340px) minmax(0,1fr);align-items:stretch;padding:0!important}
+.d3-use.gr{grid-template-columns:minmax(0,1fr) minmax(0,340px)}
+.d3-usepic{background:var(--surf2);border-right:1px solid var(--line)}
+.d3-use.gr .d3-usepic{order:2;border-right:0;border-left:1px solid var(--line)}
+.d3-usepic img{width:100%;height:auto;aspect-ratio:1/1;object-fit:contain;display:block}
+.d3-use .d3-pad{align-content:center;padding:clamp(20px,3vw,34px)}
+.d3-use.gr .d3-tag,.d3-use.gr .d3-facts b{color:var(--d3ac2)}
+.d3-use.gr .d3-ticks li:before{background:var(--d3ac2)}
+.d3-band{padding:clamp(28px,5vw,56px);border-radius:24px;background:var(--surf);border:1px solid var(--line);display:grid;gap:16px;justify-items:start}
+.d3-band>p{font-size:18px;line-height:1.6;color:var(--mut);max-width:58ch;margin:0}
+.d3-band .p-h2{margin:0}
+.d3-lock{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.d3-lock img{width:150px;height:auto}
+.d3-plus{width:1px;height:34px;background:var(--line)}
+.d3-prw{font:600 26px/1 var(--fH);letter-spacing:-.02em;color:var(--d3ac)}
+.d3-prw b{font-weight:600;color:var(--d3ac2)}
+
+/* ---------- the announcement pop-up: docked to the right edge, mid-height (Pop-up Lab A3 + B1 + D2) ---------- */
+.d3-pop{position:fixed;right:0;top:50%;z-index:2147483000;width:min(350px,calc(100vw - 16px));background:var(--surf,#FFFDF8);color:var(--ink,#1F1D17);border:1px solid var(--line,#DDD5C3);border-right:0;border-radius:14px 0 0 14px;overflow:hidden;
+  box-shadow:0 18px 40px -18px rgba(60,48,20,.35),0 2px 6px rgba(60,48,20,.06);font-family:var(--fH,system-ui,sans-serif);
+  transform:translate(105%,-50%);transition:transform .5s cubic-bezier(.2,.8,.2,1);padding-right:env(safe-area-inset-right,0px)}
+.d3-pop.on{transform:translate(0,-50%)}
+.d3-pop .hd{display:flex;align-items:center;gap:8px;background:var(--brand,#576630);color:var(--brandInk,#FFFDF8);padding:11px 8px 11px 16px;font:500 11px/1 var(--fM,ui-monospace,monospace);letter-spacing:.14em;text-transform:uppercase}
+.d3-pop .hd span{flex:1}
+.d3-pop .x{width:30px;height:30px;border:0;border-radius:8px;background:transparent;color:inherit;font:400 22px/1 var(--fH,system-ui,sans-serif);cursor:pointer;display:grid;place-items:center}
+.d3-pop .x:hover{background:rgba(255,255,255,.14)}
+.d3-pop .bd{padding:6px 18px 18px;max-height:min(60vh,520px);overflow:auto}
+.d3-pop .d2-ann{padding:0;border:0;margin:0}
+.d3-pop .d2-ann h3{margin:10px 0 6px;font:600 19px/1.25 var(--fH,system-ui,sans-serif);letter-spacing:-.01em;text-wrap:balance}
+.d3-pop .d2-ann p{margin:0;font:400 14.5px/1.55 var(--fH,system-ui,sans-serif);color:var(--mut,#625C4E)}
+.d3-pop .d2-annlink{margin-top:14px;display:inline-flex}
+.d3-pop .pg{display:flex;align-items:center;justify-content:space-between;margin-top:16px;padding-top:12px;border-top:1px solid var(--line,#DDD5C3);font:500 12px/1 var(--fM,ui-monospace,monospace);color:var(--mut,#625C4E)}
+.d3-pop .pg span:last-child{display:flex;gap:6px}
+.d3-pop .pg button{width:32px;height:32px;border:1px solid var(--line,#DDD5C3);border-radius:8px;background:var(--surf,#FFFDF8);color:var(--ink,#1F1D17);font:500 18px/1 var(--fH,system-ui,sans-serif);cursor:pointer}
+.d3-pop .pg button[disabled]{opacity:.35;cursor:default}
+.d3-pop button:focus-visible,.d3-pop a:focus-visible{outline:2px solid var(--brand,#576630);outline-offset:2px}
+.d3-pop .hd .x:focus-visible{outline-color:#fff}
+@media (prefers-reduced-motion:reduce){.d3-pop{transition:none}}
+
+/* narrow windows: stack (full mobile design comes in the mobile pass) */
+@media (max-width:860px){
+  .d3-herog,.d3-two,.d3-g2,.d3-nums,.d3-facts,.d3-fits,.d3-steps,.d3-use,.d3-use.gr{grid-template-columns:1fr}
+  .d3-use.gr .d3-usepic{order:0;border-left:0}.d3-usepic{border-right:0;border-bottom:1px solid var(--line)}
+  .d3-2col{grid-template-columns:1fr}
+}
+
+/* ---------- Google review cards: one size (Review Cards Lab 2, pick U2) ----------
+   Reviews stop after five lines; d2.js gives every card the tallest card's height and shows "Read more" only where a review was cut. */
+.hp .d2-gcard{grid-template-rows:auto auto 1fr auto;align-content:start}
+.hp .d2-gcard blockquote{display:-webkit-box;-webkit-line-clamp:5;line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+.hp .d2-more{justify-self:start;align-self:end;font:600 13.5px/1 var(--fH);color:var(--brandTx);text-decoration:underline;text-underline-offset:3px;padding:4px 0}
+.hp .d2-more[hidden]{display:none}
+.hp .d2-gcard.side .d2-more{pointer-events:none}
+
+/* ---------- Options Lab picks (15 Nov) ---------- */
+/* Aurae page, A1: what comes with an Aurae 3 (numbered brochure photo + list) */
+.hp .d3-parts{display:grid;grid-template-columns:1.25fr .75fr;gap:28px;align-items:center}
+.hp .d3-parts figure{margin:0;padding:18px;background:var(--surf);border:1px solid var(--line);border-radius:var(--r,18px)}
+.hp .d3-pimg{position:relative}
+.hp .d3-pimg img{width:100%;height:auto;display:block}
+.hp .d3-pimg i{position:absolute;width:28px;height:28px;border-radius:50%;background:var(--ink);color:var(--bg);font:600 13px/28px var(--fM);text-align:center;font-style:normal;box-shadow:0 0 0 4px color-mix(in srgb,var(--surf) 85%,transparent)}
+.hp .d3-parts ol{list-style:none;margin:0;padding:0;display:grid;gap:16px}
+.hp .d3-parts li{display:grid;grid-template-columns:28px 1fr;gap:14px;align-items:start}
+.hp .d3-parts li b{width:28px;height:28px;border-radius:50%;background:var(--ink);color:var(--bg);font:600 13px/28px var(--fM);text-align:center}
+.hp .d3-parts li span{font:600 17px/1.3 var(--fH);color:var(--ink)}
+.hp .d3-parts li small{display:block;font:400 14.5px/1.45 var(--fB);color:var(--mut);margin-top:2px}
+@media (max-width:760px){.hp .d3-parts{grid-template-columns:1fr}}
+/* blown / cast film finder, F2: match score, five-step meter, what is off */
+.hp .fm-card .d3-score{font:600 13px/1 var(--fM);color:var(--ink)}
+.hp .fm-card .d3-meter{display:flex;gap:3px}
+.hp .fm-card .d3-meter i{flex:1;height:7px;border-radius:3px;background:var(--line)}
+.hp .fm-card .d3-meter i.on{background:var(--brand)}
+.hp .fm-card .d3-off{font-size:12px;color:var(--mut)}
+.hp .fm-card .d3-off b{font:inherit;font-weight:500;color:var(--ink)}
+.hp .fm-card .d3-off em{font-style:normal}
+
+/* About: rolling year (Motion Lab pick T2, 16 Nov) with Previous / Pause / Next */
+.hp .d3-roll{display:grid;justify-items:center;gap:12px;text-align:center;padding:10px 0;position:relative}
+.hp .d3-odo{display:flex;font:var(--hW,700) clamp(64px,11vw,128px)/1 var(--fH,inherit);letter-spacing:-.04em;font-variant-numeric:tabular-nums;color:var(--ink)}
+.hp .d3-d{display:inline-block;height:1em;overflow:visible;clip-path:inset(0 -.25em)} /* hide the wheel above and below only: the tight letter spacing makes each box narrower than its digit */
+.hp .d3-d>span{display:block;transition:transform .7s cubic-bezier(.4,.14,.3,1)}
+.hp .d3-d>span>span{display:block;height:1em;line-height:1}
+.hp .d3-ms{margin:0;max-width:44ch;min-height:2.9em;font-size:clamp(17px,1.6vw,20px);line-height:1.45;color:var(--ink)}
+.hp .d3-prog{width:min(100%,520px);height:3px;border-radius:3px;background:color-mix(in srgb,var(--ink) 10%,transparent);overflow:hidden}
+.hp .d3-prog i{display:block;height:100%;background:var(--brand);transform-origin:left;transform:scaleX(0);transition:transform .5s cubic-bezier(.4,.14,.3,1)}
+.hp .d3-rc{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center;font-size:13px;color:var(--mut)}
+.hp .d3-rb{display:inline-grid;place-items:center;min-width:44px;height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--surf);color:var(--ink);font:600 14px/1 var(--fH);cursor:pointer;transition:background .2s,border-color .2s}
+.hp .d3-rb[data-r]{padding:0;width:44px}
+.hp .d3-rb:hover{border-color:var(--ink)}
+.hp .d3-rb:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.hp .d3-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;margin:0;padding:0}
+.hp .d3-roll.calm .d3-d>span,.hp .d3-roll.calm .d3-prog i{transition:none}
+@media (prefers-reduced-motion:reduce){.hp .d3-d>span,.hp .d3-prog i{transition:none}}
+
+/* Hub titles: rotating word (Motion Lab pick TX6; Rotating Word Lab R1 + R2, 16 Nov) */
+.hp .d3-rot{margin:6px 0 0;font:var(--hW,650) clamp(20px,2.6vw,30px)/1.15 var(--fH,inherit);letter-spacing:-.015em;color:var(--mut)}
+.hp .d3-rw{display:inline-grid;overflow:hidden;vertical-align:bottom;color:var(--brandTx,var(--brand))}
+.hp .d3-rw>span{grid-area:1/1;white-space:nowrap}
+.hp[data-page="fluxosealer"] .d3-rw{color:var(--d3navy)}
